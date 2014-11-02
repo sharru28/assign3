@@ -108,8 +108,7 @@ void setBombs(){
       if(slot[col][row] == SLOT_OFF){
         slot[col][row] = SLOT_BOMB;
         showSlot(col, row, SLOT_BOMB);
-        println(col);
-        println(row);
+        
         break;
       }
       
