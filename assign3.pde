@@ -53,7 +53,7 @@ void draw(){
     case GAME_START:
           background(180);
           image(bg,0,0,640,480);
-          textSize(16);
+          textFont(loadFont("font/Square_One.ttf"),24);
           fill(0);
           text("Choose # of bombs to continue:",10,width/3-24);
           int spacing = width/9;
@@ -74,12 +74,12 @@ void draw(){
           // -----------------------------------
           break;
     case GAME_WIN:
-          textSize(18);
+          textFont(loadFont("font/Square_One.ttf"),24);
           fill(0);
           text("YOU WIN !!",width/3,30);
           break;
     case GAME_LOSE:
-          textSize(18);
+          textFont(loadFont("font/Square_One.ttf"),24);
           fill(0);
           text("YOU LOSE !!",width/3,30);
           break;
@@ -88,6 +88,21 @@ void draw(){
 
 int countNeighborBombs(int col,int row){
   // -------------- Requirement B ---------
+  int count = 0;
+  for (int A = col - 1; A <= col + 1; A++){
+    for (int B = row -1 ; B<= row + 1; B++){
+       if (A >= 0 && A <= nSlot - 1 && 
+           B >= 0 && B <= nSlot - 1){ 
+          if (slot[A][B] == SLOT_BOMB){
+            count++;
+            return count;
+          }
+       
+     }   
+    }
+    
+  }
+  
   return 0;
 }
 
@@ -190,8 +205,8 @@ void mousePressed(){
        mouseY >= iy && mouseY <= iy+sideLength){
     
     // --------------- put you code here ------- 
-      int col = (mouseX - ix) / SLOT_SIZE;
-    int row = (mouseY - iy) / SLOT_SIZE;   
+      int col = int((mouseX - ix) / SLOT_SIZE);
+      int row = int((mouseY - iy) / SLOT_SIZE);   
       if ( slot[col][row] == SLOT_OFF ){
         slot[col][row] = SLOT_SAFE;
         showSlot(col,row,slot[col][row]);
@@ -214,4 +229,4 @@ void keyPressed(){
                     gameState == GAME_LOSE)){
      gameState = GAME_START;
   }
-}
+} 
