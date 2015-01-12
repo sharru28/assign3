@@ -91,19 +91,19 @@ int countNeighborBombs(int col,int row){
   int count = 0;
   for (int A = col - 1; A <= col + 1; A++){
     for (int B = row -1 ; B<= row + 1; B++){
-       if (A >= 0 && A <= nSlot - 1 && 
-           B >= 0 && B <= nSlot - 1){ 
+       if (A >= 0 && A <= nSlot  && 
+           B >= 0 && B <= nSlot ){ 
           if (slot[A][B] == SLOT_BOMB){
             count++;
-            return count;
           }
        
      }   
+     
     }
     
   }
   
-  return 0;
+  return count;
 }
 
 void setBombs(){
@@ -229,4 +229,4 @@ void keyPressed(){
                     gameState == GAME_LOSE)){
      gameState = GAME_START;
   }
-} 
+}
